@@ -1,4 +1,5 @@
-nginx:20.14
+nginx
+node:20.14
 mysql:8.0
 alpine
 python:alpine3.19
