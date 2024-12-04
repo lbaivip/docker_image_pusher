@@ -1,11 +1,14 @@
-node:22.11.0
-node:20.18.0
-node:18.20.4
+node:22.12.0
+node:20.18.1
+node:18.20.5
 mysql:8.0.40
+postgres:17.2
+postgres:13.18
+python:3.13
+python:3.12
+python:3.11
+python:3.10
 nginx:1.26.2
 redis:7.4.1
-alpine
-python:alpine3.19
-kasmweb/nginx:1.25.3
---platform=linux/amd64 redis:7.0.15-alpine3.20
---platform=linux/arm/v7 redis:7.0.15-alpine3.20
+mongodb/mongodb-community-server:8.0.3
+mongodb/mongodb-community-server:7.0.15
