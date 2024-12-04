@@ -1,7 +1,7 @@
 node:22.11.0
 node:20.18.0
 node:18.20.4
-mysql:8.0
+mysql:8.0.40
 alpine
 python:alpine3.19
 kasmweb/nginx:1.25.3
