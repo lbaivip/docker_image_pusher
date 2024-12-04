@@ -10,5 +10,5 @@ python:3.11
 python:3.10
 nginx:1.26.2
 redis:7.4.1
-mongodb/mongodb-community-server:8.0.3
-mongodb/mongodb-community-server:7.0.15
+mongodb/mongodb-community-server:8.0.3-ubuntu2204
+mongodb/mongodb-community-server:7.0.15-ubuntu2204
