@@ -1,6 +1,6 @@
-node:22.13.1
-node:20.18.1
-node:18.20.5
+node:22.13
+node:20.18
+node:18.20
 mysql:8.0.40
 postgres:17.2
 postgres:13.18
