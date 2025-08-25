@@ -4,7 +4,7 @@ node:22.16
 node:20.18
 node:18.20
 oceanbase/oceanbase-ce:latest
-mysql:8.0.40
+mysql:8.0.43
 postgres:17.5
 postgres:17.2
 postgres:13.18
