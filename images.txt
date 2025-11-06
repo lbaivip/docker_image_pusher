@@ -22,4 +22,3 @@ mongodb/mongodb-community-server:7.0.15-ubuntu2204
 kong:3.8.0-ubuntu
 shadowsocks/shadowsocks-libev
 0001coder/chatollama:latest
-ghcr.io/sugarforever/peanut-shell:latest
