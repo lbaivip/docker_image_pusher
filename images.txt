@@ -1,7 +1,8 @@
 golang:1.24.4-alpine
 alpine:latest
-node:22.16
-node:20.18
+node:24
+node:22
+node:20
 node:18.20
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
