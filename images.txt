@@ -7,6 +7,7 @@ node:20
 node:18.20
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
+postgres:18.2
 postgres:17.5
 postgres:17.2
 postgres:16-alpine
