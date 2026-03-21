@@ -11,6 +11,7 @@ env:
   ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAME_SPACE }}"
   ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
   ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+   # 保留强制切换Node.js 24
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -19,35 +20,68 @@ jobs:
     name: Pull
     runs-on: ubuntu-latest
     steps:
+    #  先检出代码（必须先拿到images.txt），再初始化Buildx
+    - name: Checkout Code
+      uses: actions/checkout@v4.4.0
+      
     - name: Docker Setup Buildx
       uses: docker/setup-buildx-action@v3.7.0
 
-    - name: Checkout Code
-      uses: actions/checkout@v4.4.0
-
     - name: Build and push image Aliyun
       run: |
-        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
+        # 登录阿里云镜像仓库（添加错误处理，登录失败直接终止）
+        if ! docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY; then
+          echo "❌ 阿里云镜像仓库登录失败"
+          exit 1
+        fi
+
+        # 检查images.txt是否存在
+        if [ ! -f "images.txt" ]; then
+          echo "❌ 未找到images.txt文件"
+          exit 1
+        fi
+
+        # 读取images.txt，跳过注释行（#开头）和空行，增强健壮性
         while IFS= read -r line; do
-          [[ -z "$line" ]] && continue
-          echo "docker pull $line"
-          docker pull $line
-          platform=$(echo "$line" | awk -F'--platform[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
-          echo "platform is $platform"
-          # 如果存在架构信息 将架构信息拼到镜像名称前面
+          # 去除首尾空格
+          line=$(echo "$line" | xargs)
+          # 跳过空行和注释行
+          [[ -z "$line" || "$line" == \#* ]] && continue
+          
+          echo "📥 开始拉取镜像: $line"
+          # 拉取镜像失败时跳过该镜像，继续处理下一个
+          if ! docker pull "$line"; then
+            echo "⚠️  拉取镜像$line失败，跳过"
+            continue
+          fi
+
+          # 提取平台信息（兼容--platform=xxx 或 --platform xxx格式）
+          platform=$(echo "$line" | sed -n 's/.*--platform[ =]\([^ ]*\).*/\1/p')
+          echo "🔍 提取的平台信息: $platform"
+
+          # 处理平台前缀（替换/为_，避免镜像名非法）
           if [ -z "$platform" ]; then
               platform_prefix=""
           else
               platform_prefix="${platform//\//_}_"
           fi
-          echo "platform_prefix is $platform_prefix"
-          # 获取镜像的完整名称，例如kasmweb/nginx:1.25.3（命名空间/镜像名:版本号）
+          echo "🔧 平台前缀: $platform_prefix"
+
+          # 提取原始镜像名（兼容带--platform的行和纯镜像名的行）
           image=$(echo "$line" | awk '{print $NF}')
-          # 获取 镜像名:版本号  例如nginx:1.25.3
+          # 提取镜像名+标签（如nginx:1.25.3）
           image_name_tag=$(echo "$image" | awk -F'/' '{print $NF}')
+          # 拼接新镜像名
           new_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$platform_prefix$image_name_tag"
-          echo "docker tag $image $new_image"
-          docker tag $image $new_image
-          echo "docker push $new_image"
-          docker push $new_image
+          
+          echo "🏷️  为镜像打标签: $image -> $new_image"
+          docker tag "$image" "$new_image"
+          
+          echo "📤 推送镜像到阿里云: $new_image"
+          if ! docker push "$new_image"; then
+            echo "⚠️  推送镜像$new_image失败，跳过"
+            continue
+          fi
+
+          echo "✅ 镜像$new_image处理完成"
         done < images.txt
