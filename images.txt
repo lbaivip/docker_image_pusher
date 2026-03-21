@@ -1,4 +1,6 @@
-
+bitnami/etcd:3.5.11
+apache/apisix:3.15.0-alpine
+apache/apisix-dashboard:3.0.1
 chromadb/chroma:latest
 apache/rocketmq:5.4.0
 golang:1.24.4-alpine
