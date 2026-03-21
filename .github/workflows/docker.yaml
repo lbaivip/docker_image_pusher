@@ -22,7 +22,7 @@ jobs:
     steps:
     #  先检出代码（必须先拿到images.txt），再初始化Buildx
     - name: Checkout Code
-      uses: actions/checkout@v4.4.0
+      uses: actions/checkout@v4.3
       
     - name: Docker Setup Buildx
       uses: docker/setup-buildx-action@v3.7.0
