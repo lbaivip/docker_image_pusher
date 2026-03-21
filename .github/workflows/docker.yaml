@@ -22,10 +22,10 @@ jobs:
     steps:
     #  先检出代码（必须先拿到images.txt），再初始化Buildx
     - name: Checkout Code
-      uses: actions/checkout@v4.3
+      uses: actions/checkout@v6.0.2
       
     - name: Docker Setup Buildx
-      uses: docker/setup-buildx-action@v3.7.0
+      uses: docker/setup-buildx-action@v4.0.0
 
     - name: Build and push image Aliyun
       run: |
