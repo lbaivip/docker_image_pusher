@@ -8,7 +8,7 @@ alpine:latest
 node:24.14
 node:22
 node:20
-node:18.20
+node:18
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
 postgres:18.2
