@@ -5,7 +5,6 @@ chromadb/chroma:latest
 apache/rocketmq:5.4.0
 golang:1.24.4-alpine
 alpine:latest
-node:24
 node:24.14
 node:22
 node:20
