@@ -1,4 +1,4 @@
-bitnamisecure/etcd:3.6.4
+bitnamilegacy/etcd:3.6.4
 apache/apisix:latest
 apache/apisix-dashboard:latest
 chromadb/chroma:latest
