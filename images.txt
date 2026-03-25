@@ -1,6 +1,5 @@
 bitnamilegacy/etcd:3.6.4
 apache/apisix:latest
-apache/apisix-dashboard:latest
 chromadb/chroma:latest
 apache/rocketmq:5.4.0
 golang:1.24.4-alpine
@@ -11,12 +10,8 @@ node:20
 node:18
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
-postgres:18.2
-postgres:17.7
-postgres:17.5
-postgres:17.2
-postgres:16-alpine
-postgres:13.18
+postgres:18.3
+postgres:17.9
 python:3.13
 python:3.12
 python:3.11
@@ -27,6 +22,5 @@ redis:7.4
 redis:8.6
 mongodb/mongodb-community-server:8.0.3-ubuntu2204
 mongodb/mongodb-community-server:7.0.15-ubuntu2204
-kong:3.8.0-ubuntu
 shadowsocks/shadowsocks-libev
 0001coder/chatollama:latest
