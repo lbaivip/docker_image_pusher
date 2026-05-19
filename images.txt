@@ -1,5 +1,10 @@
 nginx:1.31
 nginx:1.30
+node:24.15
+node:24-slim
+node:26
+node:22
+node:20
 ubuntu:22.04
 bitnamilegacy/etcd:3.6.4
 apache/apisix:latest
@@ -7,10 +12,6 @@ chromadb/chroma:latest
 apache/rocketmq:5.4.0
 golang:1.24.4-alpine
 alpine:latest
-node:24-slim
-node:24.15
-node:22
-node:20
 node:18
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
