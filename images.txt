@@ -1,3 +1,5 @@
+redis:8.6
+redis:7.4
 nginx:1.31
 nginx:1.30
 node:24.15
@@ -22,8 +24,6 @@ python:3.12
 python:3.11
 python:3.10
 chromadb/chroma
-redis:7.4
-redis:8.6
 mongodb/mongodb-community-server:8.0.3-ubuntu2204
 mongodb/mongodb-community-server:7.0.15-ubuntu2204
 shadowsocks/shadowsocks-libev
