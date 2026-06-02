@@ -1,6 +1,6 @@
 apache/apisix:latest
 apache/apisix:3.16.0-debian
-redis:8.6
+redis:8.8
 redis:7.4
 nginx:1.31
 nginx:1.30
