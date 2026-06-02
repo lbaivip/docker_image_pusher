@@ -1,3 +1,5 @@
+apache/apisix:latest
+apache/apisix:3.16.0-debian
 redis:8.6
 redis:7.4
 nginx:1.31
@@ -9,7 +11,6 @@ node:22
 node:20
 ubuntu:22.04
 bitnamilegacy/etcd:3.6.4
-apache/apisix:latest
 chromadb/chroma:latest
 apache/rocketmq:5.4.0
 golang:1.24.4-alpine
