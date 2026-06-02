@@ -1,3 +1,5 @@
+postgres:18.4
+postgres:17.9
 apache/apisix:latest
 apache/apisix:3.16.0-debian
 redis:8.8
@@ -18,8 +20,6 @@ alpine:latest
 node:18
 oceanbase/oceanbase-ce:latest
 mysql:8.0.43
-postgres:18.3
-postgres:17.9
 python:3.13
 python:3.12
 python:3.11
